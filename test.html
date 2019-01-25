@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打印测试 - 基于 Lodop</title>
+</head>
+<body style="margin: 0px; padding: 0px; height: 100px; overflow: hidden">
+
+  <div style="width: 100px; margin: 0 auto; line-height: 100px">
+      <input type="button" name="" id="printShippingBill" value="打印预览">
+  </div>
+  <object id="LODOP" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0> 
+    <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed> 
+  </object> 
+
+<script src="lodop/LodopFuncs.js"></script>
+<!-- 打印模版：发运单 -->
+<!-- // end 打印模版：发运单 -->
+<script>
+  document.getElementById('printShippingBill').onclick= function() {
+    LODOP = getLodop();
+      if (!LODOP) {
+          return false;
+      }
+      LODOP.PRINT_INIT("hahah");
+      LODOP.SET_PRINT_PAGESIZE(3, 300, 300);
+      LODOP.ADD_PRINT_RECT(0,5,360,220,0,1);
+      LODOP.SET_PRINT_STYLE("FontSize",11);
+      LODOP.ADD_PRINT_TEXT(10,25,100,25,"郭德强");
+
+      LODOP.SET_PRINT_STYLEA(2,"FontName","隶书");
+      LODOP.SET_PRINT_STYLEA(2,"FontSize",15);
+
+      LODOP.ADD_PRINT_TEXT(43,25,75,20,"科学家");
+      LODOP.ADD_PRINT_TEXT(73,25,272,20,"地址：中国北京社会科学院附近东大街西胡同");
+      LODOP.ADD_PRINT_TEXT(103,25,166,20,"电话：010-88811888");
+
+      // LODOP.PREVIEW();
+      LODOP.PRINT();
+  }
+</script>
+</body>
+</html>
